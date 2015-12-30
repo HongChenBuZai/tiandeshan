@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>ENVI Services Engine 例子</title>
+		 <script type="text/javascript" src="http://localhost/js/jQuery/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="http://localhost/js/jQuery/js/jquery-1.9.2.ui.js"></script>
+    <link rel="stylesheet" href="http://localhost/js/jQuery/css/ui-lightness/jquery-ui-1.9.2.css" />
+	</head>
+	<body style="font-family:Tahoma;font-size: 12px;">
+		<p><b>Cany边缘检测例子</b></p>
+
+		<p>从列表中选择图像，然后点击“ESE_Canny服务”进行Cany边缘检测，检测结果和原图像都会显示在下方！</p>
+
+		<!-- Drop-down selection and Submit "GO!" button form. -->
+		<form action="">
+		<select name="canny" class="input">
+		<option value="image.tif">image.tif</option>
+		<option value="boulder.tif">boulder.tif</option>
+        </select>
+		<input type="submit" class="button" value="ESE_Canny服务" />
+		
+		</form>
+
+		<!-- Display the before and result image sized smaller, a preview tooltip of the urls, 
+		and links to the full size images in new tabs. -->
+		<a href="" title="" id="before_preview" target="_blank"><img alt="" src="" id="before_png" width="500" /></a>
+		<a href="" title="" id="result_preview" target="_blank"><img alt="" src="" id="result_png" width="500" /></a>
+
+		<script>
+		    var a = 10;
+		    $(function () {
+		        $(".button").click(function () {
+		            var input = $(".input").val();
+		            a += 10;
+		            // Define request.
+		            //var request = "http://tiandeshan-pc:8181/ese/services/AsyncService/ESE_VF/submitJob?input='C:\\Program Files\\Exelis\\ENVI53\\data\\qb_boulder_msi'";
+		            // Send and receive request.
+		            $.ajax({
+		                type: 'GET',
+		                url: request,
+		                async: true, dataType: "jsonp",
+		                jsonp: "callback", jsonpCallback: "callback"+a.toString(), error: function (errorresult) {
+		                    alert("The requested task does not appear to be uploaded. The ese_canny plugin is not uploaded by default. Have you uploaded it yet?");
+		                },
+		                success: function (cannyresult) {
+
+//		                    var before = cannyresult.results[0].value.url; //.replace("192.168.112.181:8181", "124.205.245.98:5553");
+//		                    var result = cannyresult.results[1].value.url; //.replace("192.168.112.181:8181", "124.205.245.98:5553");
+//		                    //                        
+//		                    // *_png.src is to display the before and after image.	
+//		                    document.getElementById("before_png").src = before;
+//		                    document.getElementById("result_png").src = result;
+//		                    // *_preview.title and *_preview.href are for the before and 
+//		                    // after image preview tooltip and full image link in a new tab, respectivly.
+//		                    document.getElementById("before_preview").title = before;
+//		                    document.getElementById("before_preview").href = before;
+//		                    document.getElementById("result_preview").title = result;
+//		                    document.getElementById("result_preview").href = result;
+		                }
+		            });
+		            return false;
+		        });
+		    });
+		</script>
+	</body>
+</html>
